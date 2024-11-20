@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% block titulo %}
+    Próximos partidos
+{% endblock  %}
+
+{% block contenido %}
+    <table>
+        <thead>
+            <tr>
+                <th>Equipo Local</th>
+                <th>Equipo Visitante</th>
+                <th>Fecha</th>
+                <th>Competencia</th>
+                <th>Predicción</th>
+                <th>Explicación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for match in matches %}
+                <tr>
+                    <td>{{ match.equipo_local.nombre }}</td>
+                    <td>{{ match.equipo_visitante.nombre }}</td>
+                    <td>{{ match.fecha|date:"d/m/Y H:i" }}</td>
+                    <td>{{ match.competencia }}</td>
+                    <td>{{ match.prediccion }}</td>
+                    <td>{{ match.explicacion }}</td>
+                </tr>
+            {% endfor %}
+            <a href="{% url 'core:home' %}">Ir a home</a>
+        </tbody>
+    </table>
+{% endblock  %}
