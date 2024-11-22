@@ -18,6 +18,16 @@ class Partido(models.Model):
     def __str__(self):
         return f"{self.equipo_local} vs {self.equipo_visitante} - {self.fecha.strftime('%d/%m/%Y')}"
 
+    def obtener_resultado(self):
+        """
+        Devuelve los resultados asociados al partido en un formato amigable.
+        """
+        resultados = self.resultados.all()
+        return [
+            f"{resultado.equipo.nombre}: {resultado.resultado} ({resultado.goles_a_favor} - {resultado.goles_en_contra})"
+            for resultado in resultados
+        ]
+
 
 class ResultadoPartido(models.Model):
     partido = models.ForeignKey(Partido, on_delete=models.CASCADE, related_name='resultados')

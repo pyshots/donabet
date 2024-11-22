@@ -1,9 +1,24 @@
 {% extends 'core/base.html' %}
 
-{% block titulo %}
-    Mi pronóstico
-{% endblock  %}
+{% block title %}
+    Lista de Partidos - Donabet
+{% endblock title %}
+
+{% block header %}
+    Lista de Partidos
+{% endblock header %}
 
 {% block contenido %}
-<a href="{% url 'posts:home' %}">Ver partidos</a>
+    <h2 class="mb-4">Lista de Partidos</h2>
+    <ul class="list-group">
+        {% for partido in partidos %}
+            <li class="list-group-item">
+                <a href="{% url 'posts:post_detail' partido.id %}">
+                    {{ partido.equipo_local }} vs {{ partido.equipo_visitante }}
+                </a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">No hay partidos disponibles.</li>
+        {% endfor %}
+    </ul>
 {% endblock contenido %}

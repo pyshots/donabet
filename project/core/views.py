@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from . import models
+from posts.models import Partido
 
 def home(request):
-    return render(request, "core/index.html")
+    partidos = Partido.objects.all()  # Obtén todos los partidos
+    context = {
+        'partidos': partidos,
+    }
+    return render(request, 'core/index.html', context)
