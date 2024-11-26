@@ -45,25 +45,20 @@
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{% static 'images/fecha5.webp' %}" alt="..." /></figure>
                         <!-- Post content-->
                         <section class="mb-5">
+                            {% comment  %}
                             <p class="fs-5 mb-4">Fecha: {{ partido.fecha }}</p>
                             <p class="fs-5 mb-4">Competencia: {{ partido.competencia }}</p>
                             <p class="fs-5 mb-4">Pronóstico: {{ partido.prediccion }}</p>
                             <p class="fs-5 mb-4">Explicación: {{ partido.explicacion }}</p>
-                            <h2 class="fw-bolder mb-4 mt-5">Resultados</h2>
-                            <ul>
-                                {% for resultado in resultados %}
-                                    <li>{{ resultado }}</li>
-                                {% empty %}
-                                    <li>No hay resultados disponibles.</li>
-                                {% endfor %}
-                            </ul>
-                            <a href="{% url 'posts:home' %}">Volver al inicio</a>
+                            {% endcomment %}
+                            <h2 class="fw-bolder mb-4 mt-5">Pronóstico</h2>
                             {% if partido.prediccion and partido.explicacion %}
-                                <p class="fs-5 mb-4">Pronóstico: {{ partido.prediccion }}</p>
-                                <p class="fs-5 mb-4">Explicación: {{ partido.explicacion }}</p>
+                            <p class="fs-5 mb-4"> {{ partido.prediccion }}</p>
+                            <p class="fs-5 mb-4"> {{ partido.explicacion }}</p>
+                            <a href="{% url 'posts:home' %}">Volver al inicio</a>
                             {% else %}
                                 <p class="fs-5 mb-4">El pronóstico aún no está disponible.</p>
                             {% endif %}
